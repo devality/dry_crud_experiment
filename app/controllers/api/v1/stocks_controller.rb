@@ -1,4 +1,8 @@
 class Api::V1::StocksController < Api::V1::ApplicationController
+  def index
+    call_action(Api::V1::Stocks::IndexAction.new, {})
+  end
+
   def create
     call_action(Api::V1::Stocks::CreateAction.new, new_stock_params.to_h)
   end

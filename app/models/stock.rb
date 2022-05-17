@@ -1,5 +1,6 @@
 class Stock < ApplicationRecord
   extend Enumerize
+  include StocksRepository
 
   PUBLISHED = 'published'.freeze
   DELETED = 'deleted'.freeze

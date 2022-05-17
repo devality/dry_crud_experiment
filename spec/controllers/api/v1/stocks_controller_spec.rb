@@ -51,4 +51,19 @@ RSpec.describe Api::V1::StocksController, type: :controller do
       expect(response).to have_http_status(:success)
     end
   end
+
+  describe "index" do
+    it "returns list of stocks and bearers" do
+      stock_1, stock_2 = create_list(:stock, 2)
+
+      get :index, format: :json
+
+      expect(response).to have_http_status(:success)
+      p response.body
+      expect(response.body).to include_json([
+        { name: stock_1.name, bearer: { name: stock_1.bearer.name } },
+        { name: stock_2.name, bearer: { name: stock_2.bearer.name } }
+      ])
+    end
+  end
 end
