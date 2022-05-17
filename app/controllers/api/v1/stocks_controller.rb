@@ -1,6 +1,6 @@
 class Api::V1::StocksController < Api::V1::ApplicationController
   def create
-    respond_with Api::V1::Stocks::CreateAction.call(stock_params)
+    respond_with Actions::Api::V1::Stocks::CreateAction.call(stock_params)
   end
 
   private

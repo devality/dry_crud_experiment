@@ -1,3 +1,3 @@
-class BaseAction
+class Actions::BaseAction
 
 end
