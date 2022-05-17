@@ -30,6 +30,10 @@ gem 'dry-monads'
 gem 'dry-matcher'
 gem 'dry-validation'
 
+gem 'responders'
+gem 'enumerize'
+
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 
@@ -48,8 +52,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 6.0.0.rc1'
 end
 
-group :development do
-  # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
-  # gem "spring"
+group :test do
+  gem 'rspec-json_expectations'
+  gem 'factory_bot_rails'
 end
 

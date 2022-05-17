@@ -1,10 +1,19 @@
 class Api::V1::StocksController < Api::V1::ApplicationController
   def create
-    respond_with Actions::Api::V1::Stocks::CreateAction.call(stock_params)
+    call_action(Api::V1::Stocks::CreateAction.new, new_stock_params.to_h)
   end
 
+  def update
+    call_action(Api::V1::Stocks::UpdateAction.new, stock_params.to_h)
+  end
+
+
   private
-  def stock_params
+  def new_stock_params
     params.permit(:name, bearer: [:name])
+  end
+
+  def stock_params
+    params.permit(:id, :name)
   end
 end

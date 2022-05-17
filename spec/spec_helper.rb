@@ -96,3 +96,6 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 =end
 end
+
+require 'factory_bot_rails'
+include FactoryBot::Syntax::Methods
