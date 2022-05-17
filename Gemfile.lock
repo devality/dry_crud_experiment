@@ -220,6 +220,13 @@ GEM
       rspec-mocks (~> 3.11)
       rspec-support (~> 3.11)
     rspec-support (3.11.0)
+    state_machines (0.5.0)
+    state_machines-activemodel (0.8.0)
+      activemodel (>= 5.1)
+      state_machines (>= 0.5.0)
+    state_machines-activerecord (0.8.0)
+      activerecord (>= 5.1)
+      state_machines-activemodel (>= 0.8.0)
     strscan (3.0.3)
     thor (1.2.1)
     timeout (0.2.0)
@@ -250,6 +257,8 @@ DEPENDENCIES
   responders
   rspec-json_expectations
   rspec-rails (~> 6.0.0.rc1)
+  state_machines
+  state_machines-activerecord
   tzinfo-data
 
 RUBY VERSION

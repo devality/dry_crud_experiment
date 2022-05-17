@@ -1,6 +1,7 @@
 class Stock < ApplicationRecord
   extend Enumerize
   include StocksRepository
+  include StockStateMachine
 
   PUBLISHED = 'published'.freeze
   DELETED = 'deleted'.freeze

@@ -11,6 +11,9 @@ class Api::V1::StocksController < Api::V1::ApplicationController
     call_action(Api::V1::Stocks::UpdateAction.new, stock_params.to_h)
   end
 
+  def destroy
+    call_action(Api::V1::Stocks::DestroyAction, { id: params[:id] })
+  end
 
   private
   def new_stock_params
