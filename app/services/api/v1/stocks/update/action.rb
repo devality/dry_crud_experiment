@@ -1,6 +1,6 @@
 require 'dry/matcher/result_matcher'
 
-class Api::V1::Stocks::UpdateAction
+class Api::V1::Stocks::Update::Action
   include Dry::Monads[:do, :result]
   include Dry::Matcher.for(:call, with: Dry::Matcher::ResultMatcher)
 
@@ -13,11 +13,11 @@ class Api::V1::Stocks::UpdateAction
 
   private
   def validate(params)
-    Api::V1::Stocks::UpdateValidator.new.call(params)
+    Api::V1::Stocks::Update::Validator.new.call(params)
   end
 
   def update(params)
-    Api::V1::Stocks::Updater.call(params)
+    Api::V1::Stocks::Update::Updater.call(params)
   end
 end
 

@@ -1,4 +1,4 @@
-class Api::V1::Bearers::Creator
+class Api::V1::Bearers::Create::Creator
   extend Dry::Initializer
   include Dry::Monads[:do, :result]
   include Dry.Types

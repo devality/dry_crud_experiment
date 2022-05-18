@@ -6,13 +6,7 @@ class Api::V1::Stocks::UpdateBearer::Action
 
   def call(params)
     valid_params = yield validate(params)
-    valid_params = valid_params.to_h
-
-    stock = yield find(valid_params[:id])
-    valid_params[:name] = stock.name
-
-    yield delete(stock)
-    stock = yield create(valid_params)
+    stock = yield update(valid_params.to_h)
 
     Success(stock)
   end
@@ -22,20 +16,8 @@ class Api::V1::Stocks::UpdateBearer::Action
     Api::V1::Stocks::UpdateBearer::Validator.new.call(params)
   end
 
-  def find(id)
-    stock = ::Stock.find(id)
-
-    Success(stock)
-  end
-
-  def delete(stock)
-    stock.destroy!
-
-    Success(true)
-  end
-
-  def create(params)
-    Api::V1::Stocks::Creator.call(params)
+  def update(params)
+    Api::V1::Stocks::UpdateBearer::Updater.call(params)
   end
 end
 

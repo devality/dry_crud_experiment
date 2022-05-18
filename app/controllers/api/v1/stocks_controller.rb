@@ -1,14 +1,14 @@
 class Api::V1::StocksController < Api::V1::ApplicationController
   def index
-    call_action(Api::V1::Stocks::IndexAction.new, {})
+    call_action(Api::V1::Stocks::Index::Action.new, {})
   end
 
   def create
-    call_action(Api::V1::Stocks::CreateAction.new, new_stock_params.to_h)
+    call_action(Api::V1::Stocks::Create::Action.new, new_stock_params.to_h)
   end
 
   def update
-    call_action(Api::V1::Stocks::UpdateAction.new, stock_params.to_h)
+    call_action(Api::V1::Stocks::Update::Action.new, stock_params.to_h)
   end
 
   def update_bearer
@@ -16,7 +16,7 @@ class Api::V1::StocksController < Api::V1::ApplicationController
   end
 
   def destroy
-    call_action(Api::V1::Stocks::DestroyAction, { id: params[:id] })
+    call_action(Api::V1::Stocks::Destroy::Action, { id: params[:id] })
   end
 
   private

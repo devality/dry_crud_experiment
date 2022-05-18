@@ -1,4 +1,4 @@
-class Api::V1::Stocks::Updater
+class Api::V1::Stocks::Update::Updater
   extend Dry::Initializer
   include Dry::Monads[:do, :result]
   include Dry.Types

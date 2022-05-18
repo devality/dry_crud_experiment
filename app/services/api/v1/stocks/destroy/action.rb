@@ -1,6 +1,6 @@
 require 'dry/matcher/result_matcher'
 
-class Api::V1::Stocks::DestroyAction
+class Api::V1::Stocks::Destroy::Action
   extend Dry::Initializer
   include Dry::Monads[:do, :result]
   include Dry.Types
@@ -12,9 +12,9 @@ class Api::V1::Stocks::DestroyAction
   end
 
   def call
-    stock = yield delete(id)
+    yield delete(id)
 
-    Success(stock)
+    Success(true)
   end
 
   private
