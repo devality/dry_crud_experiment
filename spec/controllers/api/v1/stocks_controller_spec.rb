@@ -53,9 +53,8 @@ RSpec.describe Api::V1::StocksController, type: :controller do
   end
 
   describe "index" do
-    it "returns list of stocks and bearers except deleted" do
+    it "returns list of stocks" do
       stock_1, stock_2 = create_list(:stock, 2)
-      create(:stock, state: ::Stock::DELETED)
 
       get :index, format: :json
 
@@ -64,6 +63,15 @@ RSpec.describe Api::V1::StocksController, type: :controller do
         { name: stock_1.name, bearer: { name: stock_1.bearer.name } },
         { name: stock_2.name, bearer: { name: stock_2.bearer.name } }
       ])
+    end
+
+    it "doesn't return deleted stocks" do
+      stock = create(:stock, state: ::Stock::DELETED)
+
+      get :index, format: :json
+
+      expect(response).to have_http_status(:success)
+      expect(response.body).to_not include_json([{ name: stock.name }])
     end
   end
 
