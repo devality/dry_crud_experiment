@@ -78,4 +78,32 @@ RSpec.describe Api::V1::StocksController, type: :controller do
       expect(response).to have_http_status(:success)
     end
   end
+
+  describe "update_bearer" do
+    it "updates stock's bearer when bearer is new" do
+      bearer = create(:bearer, name: "Old Bearer")
+      stock = create(:stock, bearer: bearer)
+
+      params = { id: stock.id, bearer: { name: "New Bearer" } }
+      put :update_bearer, params: params, format: :json
+
+      expect(response).to have_http_status(:success)
+
+      stock = ::Stock.find_by_name(stock.name)
+      expect(stock.bearer.name).to be_eql(params[:bearer][:name])
+    end
+
+    it "updates stock's bearer when bearer already existed" do
+      bearer = create(:bearer, name: "New Bearer")
+      stock = create(:stock)
+
+      params = { id: stock.id, bearer: { name: "New Bearer" } }
+      put :update_bearer, params: params, format: :json
+
+      expect(response).to have_http_status(:success)
+
+      stock = ::Stock.find_by_name(stock.name)
+      expect(stock.bearer.name).to be_eql(params[:bearer][:name])
+    end
+  end
 end
